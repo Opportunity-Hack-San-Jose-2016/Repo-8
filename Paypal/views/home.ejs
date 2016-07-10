@@ -104,7 +104,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="row in tableData">
-                    <td class="orgName"><span id="{{row.Id}}"><i class="glyphicon-barcode"></i></span>{{row.Name}}</td>
+                    <td class="orgName"><span style="cursor: pointer;" id="{{row.Id}}"><i class="glyphicon-barcode"></i></span>{{row.Name}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Idea == '1' }"></td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Startup == '1' }">{{row.Early}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Early == '1' }">{{row.Later}}</td>
