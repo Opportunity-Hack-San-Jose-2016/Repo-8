@@ -1,6 +1,6 @@
 ## ANDE Ecosystem Application 
 
-###About ANDE 
+### About ANDE 
 The Aspen Network of Development Entrepreneurs (ANDE) is a global membership network of organizations that 
 propel entrepreneurship in emerging markets. ANDE members provide critical financial, educational, and business 
 support services to small and growing businesses (SGBs) based on the conviction that SGBs will create jobs, 
@@ -42,7 +42,7 @@ visualise via a simple online form and verify the gaps.
 
 ## EcoSystem App Technical Architecture
 
-
+![ANDY Ecosystem Architecture](/Paypal/ANDY_Ecosystem.png?raw=true "ANDY Ecosystem Overview")
 
 ### EcoSystem App allows:
   * <b>Filtering based on Country , Membership Type, Financial Services and Capacity Planning Service</b>
