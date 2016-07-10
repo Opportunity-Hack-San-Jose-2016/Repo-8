@@ -59,3 +59,4 @@ local.properties
 
 .jshintrc
 build.gradle
+.idea/
