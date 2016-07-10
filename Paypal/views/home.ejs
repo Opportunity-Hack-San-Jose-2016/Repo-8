@@ -15,7 +15,7 @@
     <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/home-page.css" rel="stylesheet"/>
     <link href="css/shop-item.css" rel="stylesheet"/>
-
+    <link rel="icon" href="images/favicon.ico">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -138,26 +138,31 @@
 <!-- /.container -->
 
 <!-- Modal -->
-<div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-focus-on="input:first" aria-hidden="true">
+<div class= "modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-focus-on="input:first" aria-hidden="true">
     <div class="vertical-alignment-helper">
         <div class="modal-dialog vertical-align-center">
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
                     </button>
-                    <h3 style="text-align:center">  <span style="color:rgba(246, 146, 29, 0.74902);padding-right:15px;"><i class="fa fa-wrench fa-lg"></i></span>Details 	</h3>
                 </div>
-                <div class="modal-body" style="height:350px;overflow-y:auto">
-
+                <div class="modal-body" style="height:550px;overflow-y:auto">
+                    <ol class='breadcrumb' id='modalheader-page'>
+                        <li><i class='fa fa-plus-circle'></i>&nbsp;&nbsp;Organization Details</li>
+                    </ol>
+                    <table class="table">
+                        <tr><td class="modal-details-td">Name: </td><td><span id="details-name" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Membership Type:</td><td><span id="details-membership" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Impact Focus:</td><td><span id="details-impactfocus" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Sector Focus:</td><td><span id="details-sectorfocus" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Headquarters City:</td><td><span id="details-city" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Headquarters Country:</td><td><span id="details-country" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Website:</td><td><span id="details-website" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Description:</td><td><span id="details-description" class="modal-details"></span></td></tr>
+                    </table>
                 </div>
                 <div class="modal-footer">
-                    <p style="float:left"><b>Or add your data</b></p>
-                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                     <button type="button" class="btn btn-primary">Save changes</button>-->
-                    <div style="text-align:center;cursor:pointer;">
-                        <i class="fa fa-upload fa-2x" style="color:rgba(246, 146, 29, 0.74902)"  id="modal-uploadbutton"></i>
-                        <span style="margin-left:5px;">Close</span>
-                    </div>
+                    <button class="btn btn-primary" data-dismiss="modal" id="close" ><i class="fa fa-times-circle"></i>&nbsp;Close</button>
                 </div>
             </div>
         </div>
@@ -229,14 +234,34 @@
                     alert(id);
                 }
 
+                $scope.showDetails= function (id){
+                    //alert(id);
+                    $http({
+                        method: 'POST',
+                        url: '/organizationDetails',
+                        data:{'organizationId':id}
+                    }).success(function(response){
+
+                        $('#details-name').text(response.records[0].Name==null?'':response.records[0].Name);
+                        $('#details-membership').text(response.records[0].Membership_Type__c==null?'':response.records[0].Membership_Type__c);
+                        $('#details-impactfocus').text(response.records[0].Impact_Focus__c==null?'':response.records[0].Impact_Focus__c);
+                        $('#details-sectorfocus').text(response.records[0].Sector_Focus__c==null?'':response.records[0].Sector_Focus__c);
+                        $('#details-city').text(response.records[0].Headquarters_City__c==null?'':response.records[0].Headquarters_City__c);
+                        $('#details-country').text(response.records[0].Headquarters_Country__c==null?'':response.records[0].Headquarters_Country__c);
+                        $('#details-website').text(response.records[0].Website==null?'':response.records[0].Website);
+                        $('#details-description').text(response.records[0].Description==null?'':response.records[0].Description);
+                        $('#details-modal').modal('show');
+
+                    }).error(function(error){
+                        alert("Something Went on the Server");
+                    });
+
+                }
 
             });
-            $(document).ready(function() {
-                $('[data-toggle="tooltip"]').tooltip();
-            });
-
         </script>
-
+    </div>
+</div>
 </body>
 
 </html>

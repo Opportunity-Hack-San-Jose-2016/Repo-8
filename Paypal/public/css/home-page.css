@@ -72,9 +72,26 @@ html, body{
     text-align:center;
     width:25%;
 }
+#modalheader-page{
+    /*margin-left:5px;
+    margin-right:5px;*/
+    background-image: url("textures/brushed-metal.png");
+    background-image: url("textures/brushed-metal.png"),-webkit-linear-gradient(top,#337ab7 0,#212a33 100%);
+    background-image: url("textures/brushed-metal.png"),-moz-linear-gradient(top,#337ab7 0,#212a33 100%);
+    background-image: url("textures/brushed-metal.png"),-o-linear-gradient(top,#337ab7 0,#212a33 100%);
+    background-image: url("textures/brushed-metal.png"),linear-gradient(to bottom,#337ab7 0,#212a33 100%);
+    background-position: 50% 50%;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    color:#fff;
+}
+.modal-details> span{
+    text-align:justify;
+}.modal-details-td{
+     width:25%;
+     font-weight:bold;
+
 
 .errorMessage{
     color:red;
-
 }
-

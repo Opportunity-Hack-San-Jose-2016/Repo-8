@@ -187,7 +187,7 @@ background-color:#004599;
     margin: 0 auto;
 }
 .modal .modal-dialog{
-	width:45%;
+	width:60%;
 
 }
 .modaltable-hover:hover
@@ -424,4 +424,6 @@ color:#fff;
     position:relative;
     top:5px;
 }
+
+
 

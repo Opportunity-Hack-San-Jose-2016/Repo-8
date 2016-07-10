@@ -111,7 +111,7 @@ exports.search=function(req,res){
 
 //TODO: need to add Geographical focus areas
 exports.organizationDetails=function(req,res) {
-	var organizationId = req.query.organizationId;
+	var organizationId = req.param('organizationId');
 	if(organizationId === undefined || organizationId === "") {
 		res.send("error: send ID");
 	}
