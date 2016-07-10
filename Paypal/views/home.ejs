@@ -52,28 +52,28 @@
             <div class="row">
                 <form name="filterForm">
                     <div class="col-md-3 pull-left">
-                        <div class="form-group select-menu">
+                        <div class="form-group select-menu flex-select-menu flight-travelers-wrap">
                             <label class="sr-only">Country</label>
                             <select name="countries"
                                     class="form-control input-lg"
-                                    ng-model="countryValue"  required>
-                                <option ng-repeat="option in countryOptions" value="{{option.Name}}">{{option.Name}}</option>
+                                    id="passengerNumber" ng-model="countryValue">
+                                <option value="" disabled selected hidden>Select Country</option>
+                                <option ng-repeat="option in countryOptions" value="{{option.Name}}" ng-bind="option.Name"></option>
                             </select>
                             <i class="select"><i class="icon-chevron-down"></i></i>
                             <i class="icon-guy"></i>
-                            <span class="errorMessage" ng-show="countryError">Country should be selected</span>
                         </div>
                     </div>
                     <div class="col-md-3 pull-left">
-                        <div class="form-group select-menu">
+                        <div class="form-group select-menu flex-select-menu flight-travelers-wrap">
                             <label class="sr-only">Types</label>
                             <select name="travelers"
                                     class="form-control input-lg"
-                                    ng-model="typeValue">
-                                <option ng-repeat="option in typeOptions" value="{{option.Membership_Type__c}}">{{option.Membership_Type__c}}</option>
+                                    id="passengerNumber" ng-model="typeValue">
+                                <option value="" disabled selected hidden>Select Country</option>
+                                <option ng-repeat="option in typeOptions" value="{{option.Membership_Type__c}}" ng-bind="option.Membership_Type__c"></option>
                             </select>
                             <i class="select"><i class="icon-chevron-down"></i></i>
-                            <i class="icon-guy"></i>
                         </div>
                     </div>
                     <div class="col-md-3 pull-left multiSelectDiv" ng-dropdown-multiselect="" options="serviceData"
