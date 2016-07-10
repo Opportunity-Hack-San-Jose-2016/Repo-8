@@ -28,8 +28,8 @@
 <body>
 
 <!-- Navigation -->
-<nav class="navbar navbar-inverse" role="navigation">
-    <div class="container">
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class=".container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -38,23 +38,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Data Freaks</a>
+            <a class="navbar-brand" href="/"><img src="images/logo.png" style="width:10%;height:90%;float:left"/> <span class="logo-text">Aspen Network of Development Entrepreneur</span> </a>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a href="#">About</a>
-                </li>
-                <li>
-                    <a href="#">Services</a>
-                </li>
-                <li>
-                    <a href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
     </div>
     <!-- /.container -->
 </nav>
@@ -72,6 +57,18 @@
                                 class="form-control input-lg"
                                 id="passengerNumber" ng-model="countryValue">
                             <option ng-repeat="option in countryOptions" value="{{option.Name}}">{{option.Name}}</option>
+                        </select>
+                        <i class="select"><i class="icon-chevron-down"></i></i>
+                        <i class="icon-guy"></i>
+                    </div>
+                </div>
+                <div class="col-md-3 pull-left">
+                    <div class="form-group select-menu flex-select-menu flight-travelers-wrap">
+                        <label class="sr-only">Types</label>
+                        <select name="travelers"
+                                class="form-control input-lg"
+                                id="passengerNumber" ng-model="typeValue">
+                            <option ng-repeat="option in typeOptions" value="{{option.Membership_Type__c}}">{{option.Membership_Type__c}}</option>
                         </select>
                         <i class="select"><i class="icon-chevron-down"></i></i>
                         <i class="icon-guy"></i>
@@ -138,7 +135,8 @@
     app.controller('homeCtrl', function($http, $scope, $timeout) {
         var data = <%- JSON.stringify(countries) %>;
         console.log(data);
-        var typeData = <%- JSON.stringify(countries) %>;
+        var typeData = <%- JSON.stringify(memberTypes) %>;
+        console.log(typeData);
         $scope.countryOptions = data.records;
         $scope.typeOptions = typeData.records;
         $scope.serviceModel = []; $scope.serviceData = [ {id: 1, label: "Financial Services"}, {id: 2, label: "Capacity Development"}];
