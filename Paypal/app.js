@@ -42,7 +42,7 @@ app.get('/memberTypeList', search.memberTypeList);
 
 
 
-app.get('/search', search.search);
+app.post('/search', search.stageData);
 
 app.get('/countriesList', search.countriesList);
 

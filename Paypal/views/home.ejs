@@ -89,7 +89,7 @@
     </div>
     <div ng-if="showTable">
         <div class="row">
-            <table class="table search-table">
+            <table class="table search-table orgTable">
                 <thead>
                 <tr>
                     <th>Organization Name</th>
@@ -103,14 +103,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr ng-repeat="row in rows">
-                    <td>{{row.orgName}}</td>
-                    <td>{{row.Later}}</td>
-                    <td>{{row.Early}}</td>
-                    <td>{{row.Later}}</td>
-                    <td>{{row.Early}}</td>
-                    <td>{{row.Later}}</td>
-                    <td>{{row.Early}}</td>
+                <tr ng-repeat="row in tableData">
+                    <td class="orgName"><span id="{{row.Id}}"><i class="glyphicon-barcode"></i></span>{{row.Name}}</td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Idea == '1' }"></td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Startup == '1' }">{{row.Early}}</td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Early == '1' }">{{row.Later}}</td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Later == '1' }">{{row.Early}}</td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Growth == '1' }">{{row.Later}}</td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Mature == '1' }">{{row.Early}}</td>
                     <td>{{row.Early}}</td>
                 </tr>
                 </tbody>
@@ -152,12 +152,16 @@
                 "financialServices":"NO",
                 "capacityNonFinServices":"NO"
             };
-            if($scope.serviceModel[0].id){
-                data.financialServices="YES";
+            console.log($scope.serviceModel[0]);
+            for(var i=0; i<$scope.serviceModel.length; i++ ){
+                if($scope.serviceModel[i].id == 1){
+                    data.financialServices = "YES";
+                }
+                else if($scope.serviceModel[i].id == 2){
+                    data.capacityNonFinServices = "YES";
+                }
             }
-            if($scope.serviceModel[1].id){
-                data.capacityNonFinServices="YES";
-            }
+            console.log(data);
             $scope.selectedIndex = 1;
             $timeout(function(){
                 $http({
@@ -165,7 +169,8 @@
                     url: '/search',
                     data:data
                 }).success(function(response){
-                    alert("logout success");
+                    console.log(response);
+                    $scope.tableData = response.records;
 
                 }).error(function(error){
                     alert(error);
