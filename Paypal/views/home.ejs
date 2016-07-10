@@ -165,12 +165,13 @@
                         <tr><td class="modal-details-td">Sector Focus:</td><td><span id="details-sectorfocus" class="modal-details"></span></td></tr>
                         <tr><td class="modal-details-td">Headquarters City:</td><td><span id="details-city" class="modal-details"></span></td></tr>
                         <tr><td class="modal-details-td">Headquarters Country:</td><td><span id="details-country" class="modal-details"></span></td></tr>
-                        <tr><td class="modal-details-td">Website:</td><td><span id="details-website" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Website:</td><td><a href="" id="details-websiteLink"><span id="details-website" class="modal-details"></span></a></td></tr>
                         <tr><td class="modal-details-td">Description:</td><td><span id="details-description" class="modal-details"></span></td></tr>
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" data-dismiss="modal" id="close" ><i class="fa fa-times-circle"></i>&nbsp;Close</button>
+                        <button class="btn btn-primary" >Contact Now</button>
+                        <button class="btn btn-primary" data-dismiss="modal" id="close" ><i class="fa fa-times-circle"></i>&nbsp;Close</button>
                 </div>
             </div>
         </div>
@@ -258,6 +259,7 @@
                         $('#details-country').text(response.records[0].Headquarters_Country__c==null?'':response.records[0].Headquarters_Country__c);
                         $('#details-website').text(response.records[0].Website==null?'':response.records[0].Website);
                         $('#details-description').text(response.records[0].Description==null?'':response.records[0].Description);
+                        $('#details-websiteLink').attr("href",response.records[0].Website );
                         $('#details-modal').modal('show');
 
                     }).error(function(error){
