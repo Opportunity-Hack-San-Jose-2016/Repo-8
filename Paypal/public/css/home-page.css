@@ -8,7 +8,7 @@ html, body{
     margin: 0px auto;
     margin-top: 16%!important;
     padding: 3% 1%!important;
-    background-color: #F8F0ED!important;
+    background-color: #cff5f7!important;
 }
 
 .search-top{
@@ -53,9 +53,23 @@ html, body{
     table-layout: fixed;
 }
 .orgName{
-    width: 100px;
+    width: 20%;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+.view-icon{
+    padding:5px;
+    font-size:16px;
+}
+
+.text-style{
+    color:#337ab7;
+    font-size:16px;
+}
+
+.tags-style{
+    text-align:center;
+    width:25%;
 }
 

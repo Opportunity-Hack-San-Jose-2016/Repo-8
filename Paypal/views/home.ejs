@@ -53,7 +53,7 @@
                 <div class="col-md-3 pull-left">
                     <div class="form-group select-menu flex-select-menu flight-travelers-wrap">
                         <label class="sr-only">Country</label>
-                        <select name="travelers"
+                        <select name="countries"
                                 class="form-control input-lg"
                                 id="passengerNumber" ng-model="countryValue">
                             <option ng-repeat="option in countryOptions" value="{{option.Name}}">{{option.Name}}</option>
@@ -92,26 +92,26 @@
             <table class="table search-table orgTable">
                 <thead>
                 <tr>
-                    <th>Organization Name</th>
+                    <th class="orgName">Organization Name</th>
                     <th>Idea</th>
                     <th>StartUp</th>
                     <th>Early</th>
                     <th>Later</th>
                     <th>Growth</th>
                     <th>Mature</th>
-                    <th>Tags</th>
+                    <th class="tags-style">Tags</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="row in tableData">
-                    <td class="orgName"><span id="{{row.Id}}"><i class="glyphicon-barcode"></i></span>{{row.Name}}</td>
+                    <td class="orgName text-style"><span data-id="{{row.Id}}"  data-ng-click="showDetails(row.Id)" class="view-icon"><i class="glyphicon glyphicon-eye-open"></i></span>{{row.Name}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Idea == '1' }"></td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Startup == '1' }">{{row.Early}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Early == '1' }">{{row.Later}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Later == '1' }">{{row.Early}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Growth == '1' }">{{row.Later}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Mature == '1' }">{{row.Early}}</td>
-                    <td>{{row.Early}}</td>
+                    <td class="tags-style">{{row.Early}}</td>
                 </tr>
                 </tbody>
             </table>
@@ -122,6 +122,33 @@
     </div>
 </div>
 <!-- /.container -->
+
+<!-- Modal -->
+<div class="modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-focus-on="input:first" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                    <h3 style="text-align:center">  <span style="color:rgba(246, 146, 29, 0.74902);padding-right:15px;"><i class="fa fa-wrench fa-lg"></i></span>Details 	</h3>
+                </div>
+                <div class="modal-body" style="height:350px;overflow-y:auto">
+
+                </div>
+                <div class="modal-footer">
+                    <p style="float:left"><b>Or add your data</b></p>
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                     <button type="button" class="btn btn-primary">Save changes</button>-->
+                    <div style="text-align:center;cursor:pointer;">
+                        <i class="fa fa-upload fa-2x" style="color:rgba(246, 146, 29, 0.74902)"  id="modal-uploadbutton"></i>
+                        <span style="margin-left:5px;">Close</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!-- /.Modal ->
 
 <!-- jQuery -->
 <script src="js/jquery.js"></script>
@@ -179,6 +206,9 @@
             },1000);
 
 
+        }
+        $scope.showDetails= function (id){
+            alert(id);
         }
 
     });
