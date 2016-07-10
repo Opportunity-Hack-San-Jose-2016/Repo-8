@@ -54,23 +54,23 @@ exports.search=function(req,res){
 	var financialServices = req.query.financialServices; //YES or NO or empty
 	var capacityNonFinServices = req.query.capacityNonFinServices; //YES or NO or empty
 	var deliveryMechanism = req.query.deliveryMechanism; //YES or NO or empty
-	
+
 	//TODO: return error message if country is not present in the req
 	var countryQuery = "";
 	if(country !== undefined && country !== "") {
 		countryQuery = "country__C like '"+country+"'";
 	}
-	
+
 	var memberTypeQuery = "";
 	if(memberType !== undefined && memberType !== "") {
 		memberTypeQuery = " and membership_type__c like '"+memberType+"'";
 	}
-	
+
 	var financialServicesQuery = "";
 	if(financialServices !== undefined && financialServices !== "" && financialServices === "YES") {
 		financialServicesQuery = " and instrument__C != ''";
 	}
-	
+
 	var capacityNonFinServicesQuery = "";
 	if(capacityNonFinServices !== undefined && capacityNonFinServices !== "" && capacityNonFinServices === "YES") {
 		capacityNonFinServicesQuery = "and nonfinancial_support__C != ''";
@@ -80,29 +80,34 @@ exports.search=function(req,res){
 	if(deliveryMechanism !== undefined && deliveryMechanism !== "" && deliveryMechanism === "YES") {
 		deliveryMechanismQuery = "and capdevs_what_does_your_int_consist_of__C != ''";
 	}
-	
+
 	var query = "select id,name,membership_type__c,(select country__C,Stage__c,Sector_or_Impact_Focus__c,Stakeholders_or_Business__c,Instrument__c,NonFinancial_Support__c,CapDevs_What_does_your_int_consist_of__C from ecosystem_mapping__r where "+countryQuery+")" +
-			"from account where id in (select account_name__c from ecosystem_mapping__c where "+countryQuery + financialServicesQuery + capacityNonFinServicesQuery + deliveryMechanismQuery+")"+memberTypeQuery;
-	
+		"from account where id in (select account_name__c from ecosystem_mapping__c where "+countryQuery + financialServicesQuery + capacityNonFinServicesQuery + deliveryMechanismQuery+")"+memberTypeQuery;
+
 	console.log(query);
-	
+
 	var conn = new jsforce.Connection();
 	var connection=conn.login(config.username, config.password, function(err, connRes) {
-		  if (err) { return console.error(err); }
-		  else{
-			  console.log("Connection Successful");
-			  conn.query(query, function(err, res1) {
-				    if (err) {
-				    	console.error(err); 
-				    	res.send(err);
-				    } else {
-				    	console.log(res1);
-				    	res.send(res1);
-				    }
-			  });
-		  }
+		if (err) { return console.error(err); }
+		else{
+			console.log("Connection Successful");
+			conn.query(query, function(err, res1) {
+				if (err) {
+					console.error(err);
+					res.send(err);
+				} else {
+					var i;
+					for(i = 0; i < res1.records.length; i++) {
+						res1.records[i].Ecosystem_Mapping__r.records[0].Stage__c = stageJSON(res1.records[i].Ecosystem_Mapping__r.records[0].Stage__c);
+					}
+					console.log(res1);
+					res.send(res1);
+				}
+			});
+		}
 	});
 };
+
 
 //TODO: need to add Geographical focus areas
 exports.organizationDetails=function(req,res) {
@@ -130,3 +135,29 @@ exports.organizationDetails=function(req,res) {
 			}
 		});
 }
+
+function stageJSON(stageStr) {
+	var test = {};
+	if(stageStr !== undefined && stageStr !== null) {
+		var stageArray = stageStr.split(";");
+		var i;
+		for(i = 0; i < stageArray.length; i++) {
+			var key = stageArray[i].trim();
+			test[key] = "true";
+		}
+		if(test.Idea === undefined)
+			test["Idea"] = "false";
+		if(test.Startup === undefined)
+			test["Startup"] = "false";
+		if(test.Early === undefined)
+			test["Early"] = "false";
+		if(test.Later === undefined)
+			test["Later"] = "false";
+		if(test.Growth === undefined)
+			test["Growth"] = "false";
+		if(test.Mature === undefined)
+			test["Mature"] = "false";
+	}
+	return test;
+}
+
