@@ -4,6 +4,7 @@ build/Release
 # Dependency directories
 node_modules
 jspm_packages
+config
 
 # Optional npm cache directory
 .npm
@@ -19,7 +20,7 @@ local.properties
 .settings/
 .loadpath
 .recommenders
-
+.idea
 
 # External tool builders
 .externalToolBuilders/

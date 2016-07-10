@@ -1,0 +1,123 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+
+.search-container{
+    width:90%;
+    margin: 0px auto;
+    margin-top: 16%!important;
+    padding: 3% 1%!important;
+    background-color: #cff5f7!important;
+}
+
+.search-top{
+    margin-top:10%!important;
+    transition-duration: 1s;
+}
+
+.search-wrapper{
+}
+
+.search-table{
+    width: 88%;
+    padding: 3% 1%;
+    margin: 0px auto;
+    margin-top: 2%;
+}
+
+.multiSelectDiv>div{
+    width:100%;
+}
+
+.multiSelectDiv>div>button{
+    font-size: 1.3em;
+    padding: 3.3%;
+    width: 100%;
+    text-align: left!important;
+}
+
+.multiSelectDiv>div>button:hover{
+    background-color: #FFFFFF!important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)!important;
+}
+.multiSelectDiv>div>button:active {
+    background-color: #FFFFFF!important;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075)!important;
+}
+
+.color-cell{
+    background-color:green;
+}
+.orgTable{
+    table-layout: fixed;
+}
+.orgName{
+    width: 20%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.view-icon{
+    padding:5px;
+    font-size:16px;
+}
+
+.text-style{
+    color:#337ab7;
+    font-size:16px;
+}
+
+.tags-style{
+    text-align:center;
+    width:25%;
+}
+#modalheader-page{
+    /*margin-left:5px;
+    margin-right:5px;*/
+    background-image: url("textures/brushed-metal.png");
+    background-image: url("textures/brushed-metal.png"),-webkit-linear-gradient(top,#337ab7 0,#212a33 100%);
+    background-image: url("textures/brushed-metal.png"),-moz-linear-gradient(top,#337ab7 0,#212a33 100%);
+    background-image: url("textures/brushed-metal.png"),-o-linear-gradient(top,#337ab7 0,#212a33 100%);
+    background-image: url("textures/brushed-metal.png"),linear-gradient(to bottom,#337ab7 0,#212a33 100%);
+    background-position: 50% 50%;
+    background-color: #337ab7;
+    border-color: #337ab7;
+    color:#fff;
+}
+.modal-details> span{
+    text-align:justify;
+}.modal-details-td {
+     width: 25%;
+     font-weight: bold;
+ }
+
+ .tag1, .tag2, .tag3, .tag4, .tag5{
+     font-size:1.3em;
+ }
+ .tag1{
+     color:red;
+ }
+
+ .tag2{
+     color:green;
+ }
+ .tag3{
+     color:blue;
+ }
+ .tag4{
+     color:orange;
+ }
+ .tag5{
+     color: brown;
+ }
+
+.errorMessage{
+    color:red;
+}
+
+.tagRow{
+    width: 72%;
+    padding: 2% 0;
+    float: right;
+}

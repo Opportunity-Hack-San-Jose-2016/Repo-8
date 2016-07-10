@@ -4,11 +4,14 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
-  , user = require('./routes/user')
-  , http = require('http')
-  , jsforce = require('jsforce')
-  , path = require('path');
+
+    , routes = require('./routes')
+    , index = require('./routes/index')
+    , search = require('./routes/search')
+    , http = require('http')
+    , jsforce = require('jsforce')
+    , path = require('path');
+
 
 var app = express();
 
@@ -28,7 +31,20 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
-app.get('/', user.login);
+app.get('/', index.index);
+
+//app.get('/search', search.search);
+
+app.get('/countriesList', search.countriesList);
+
+app.get('/memberTypeList', search.memberTypeList);
+
+//TODO replace "search.stageData" to "search.search"
+app.post('/search', search.stageData);
+
+app.post('/organizationDetails', search.organizationDetails);
+
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

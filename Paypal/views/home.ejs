@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="home" ng-controller="homeCtrl">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Home</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/home-page.css" rel="stylesheet"/>
+    <link href="css/shop-item.css" rel="stylesheet"/>
+    <link rel="icon" href="images/favicon.ico">
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class=".container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/"><img src="images/logo.png" style="width:10%;height:90%;float:left"/> <span class="logo-text">Aspen Network of Development Entrepreneur</span> </a>
+        </div>
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container-fluid">
+
+    <div class="search-container" ng-class="{ 'search-top': selectedIndex == 1 }">
+        <div class="search-wrapper">
+            <div class="row">
+                <form name="filterForm">
+                    <div class="col-md-3 pull-left">
+                        <div class="form-group select-menu flex-select-menu flight-travelers-wrap">
+                            <label class="sr-only">Country</label>
+                            <select name="countries"
+                                    class="form-control input-lg"
+                                    id="passengerNumber" ng-model="countryValue">
+                                <option value="" disabled selected hidden>Select Country</option>
+                                <option ng-repeat="option in countryOptions" value="{{option.Name}}" ng-bind="option.Name"></option>
+                            </select>
+                            <i class="select"><i class="icon-chevron-down"></i></i>
+                            <i class="icon-guy"></i>
+                        </div>
+                    </div>
+                    <div class="col-md-3 pull-left">
+                        <div class="form-group select-menu flex-select-menu flight-travelers-wrap">
+                            <label class="sr-only">Types</label>
+                            <select name="travelers"
+                                    class="form-control input-lg"
+                                    id="passengerNumber" ng-model="typeValue">
+                                <option value="" disabled selected hidden>Select Member Type</option>
+                                <option ng-repeat="option in typeOptions" value="{{option.Membership_Type__c}}" ng-bind="option.Membership_Type__c"></option>
+                            </select>
+                            <i class="select"><i class="icon-chevron-down"></i></i>
+                        </div>
+                    </div>
+                    <div class="col-md-3 pull-left multiSelectDiv" ng-dropdown-multiselect="" options="serviceData"
+                         selected-model="serviceModel"
+                         extra-settings="serviceSettings"></div>
+                    <div class="col-md-3 pull-left">
+                        <button type="submit" class="btn-block btn btn-primary btn-lg"
+                                ng-click="search()">
+                            <i class="icon-flights"></i>
+                            <span>Search</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div ng-if="showTable">
+            <div class="tagRow row">
+                <span><i class="tag1 glyphicon glyphicon-tag"></i> - Sectors of Focus </span>
+                <span><i class="tag2 glyphicon glyphicon-tag"></i> - Business Model Focus</span>
+                <span><i class="tag3 glyphicon glyphicon-tag"></i> - Financial Services </span>
+                <span><i class="tag4 glyphicon glyphicon-tag"></i> - Capacity Development Service</span>
+                <span><i class="tag5 glyphicon glyphicon-tag"></i> - Delivery Mechanism</span>
+            </div>
+        <div class="row">
+            <table class="table search-table orgTable">
+                <thead>
+                <tr>
+                    <th class="orgName">Organization Name</th>
+                    <th>Idea</th>
+                    <th>StartUp</th>
+                    <th>Early</th>
+                    <th>Later</th>
+                    <th>Growth</th>
+                    <th>Mature</th>
+                    <th class="tags-style">Tags</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in tableData">
+                    <td class="orgName text-style"><span data-id="{{row.Id}}"  data-ng-click="showDetails(row.Id)" class="view-icon"><i class="glyphicon glyphicon-eye-open"></i></span><a data-id="{{row.Id}}"  data-ng-click="showDetails(row.Id)" ng-bind="row.Name"></a></td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Idea == '1' }"></td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Startup == '1' }">{{row.Early}}</td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Early == '1' }">{{row.Later}}</td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Later == '1' }">{{row.Early}}</td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Growth == '1' }">{{row.Later}}</td>
+                    <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Mature == '1' }">{{row.Early}}</td>
+                    <td>
+                        <table style="width:100%">
+                            <tr>
+                                <td  ng-show="row.Ecosystem_Mapping__r.records[0].Sector_or_Impact_Focus__c">
+                                    <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Sector_or_Impact_Focus__c}}"><i  class="tag1 glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].Stakeholders_or_Business__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Stakeholders_or_Business__c}}"><i class="tag2 glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].Instrument__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Instrument__c}}"><i class="tag3 glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].CapDevs_What_does_your_int_consist_of__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].CapDevs_What_does_your_int_consist_of__c}}"><i class="tag4 glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].NonFinancial_Support__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].NonFinancial_Support__c}}"><i class="tag5 glyphicon glyphicon-tag"></i></a> </td>
+                            </tr>
+                        </table>
+                    </td>
+
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</div>
+<!-- /.container -->
+
+<!-- Modal -->
+<div class= "modal fade" id="details-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" data-focus-on="input:first" aria-hidden="true">
+    <div class="vertical-alignment-helper">
+        <div class="modal-dialog vertical-align-center">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="height:550px;overflow-y:auto">
+                    <ol class='breadcrumb' id='modalheader-page'>
+                        <li><i class='fa fa-plus-circle'></i>&nbsp;&nbsp;Organization Details</li>
+                    </ol>
+                    <table class="table">
+                        <tr><td class="modal-details-td">Name: </td><td><span id="details-name" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Membership Type:</td><td><span id="details-membership" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Impact Focus:</td><td><span id="details-impactfocus" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Sector Focus:</td><td><span id="details-sectorfocus" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Headquarters City:</td><td><span id="details-city" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Headquarters Country:</td><td><span id="details-country" class="modal-details"></span></td></tr>
+                        <tr><td class="modal-details-td">Website:</td><td><a href="" id="details-websiteLink"><span id="details-website" class="modal-details"></span></a></td></tr>
+                        <tr><td class="modal-details-td">Description:</td><td><span id="details-description" class="modal-details"></span></td></tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                        <button class="btn btn-primary" >Contact Now</button>
+                        <button class="btn btn-primary" data-dismiss="modal" id="close" ><i class="fa fa-times-circle"></i>&nbsp;Close</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- /.Modal ->
+
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <script src="js/lodash.js"></script>
+        <script src="js/angularjs-dropdown-multiselect.js"></script>
+        <script type="text/javascript">
+
+            var app = angular.module('home', ['angularjs-dropdown-multiselect']);
+            app.controller('homeCtrl', function($http, $scope, $timeout) {
+                $scope.countryError = false;
+                var data = <%- JSON.stringify(countries) %>;
+                console.log(data);
+                var typeData = <%- JSON.stringify(memberTypes) %>;
+                console.log(typeData);
+                $scope.countryOptions = data.records;
+                $scope.typeOptions = typeData.records;
+                $scope.serviceModel = [];
+                $scope.serviceData = [ {id: 1, label: "Financial Services"}, {id: 2, label: "Capacity Development"}];
+                $scope.serviceSettings = {displayProp: 'label'};
+                $scope.selectedIndex = 0;
+                $scope.showTable=false;
+                $scope.search = function() {
+                    $scope.countryError = false;
+                    if($scope.countryValue){
+                        console.log($scope.serviceModel);
+                        var data = {
+                            "country":$scope.countryValue,
+                            "memberType":$scope.typeValue,
+                            "financialServices":"NO",
+                            "capacityNonFinServices":"NO"
+                        };
+                        console.log($scope.serviceModel[0]);
+                        for(var i=0; i<$scope.serviceModel.length; i++ ){
+                            if($scope.serviceModel[i].id == 1){
+                                data.financialServices = "YES";
+                            }
+                            else if($scope.serviceModel[i].id == 2){
+                                data.capacityNonFinServices = "YES";
+                            }
+                        }
+                        console.log(data);
+                        $scope.selectedIndex = 1;
+                        $timeout(function(){
+                            $http({
+                                method: 'POST',
+                                url: '/search',
+                                data:data
+                            }).success(function(response){
+                                console.log(response);
+                                $scope.tableData = response.records;
+
+                            }).error(function(error){
+                                alert(error);
+                            });
+                            $scope.showTable = true;
+                        },1000);
+                    }else{
+                        $scope.countryError = true;
+                    }
+                }
+                $scope.showDetails= function (id){
+                    alert(id);
+                }
+
+                $scope.showDetails= function (id){
+                    //alert(id);
+                    $http({
+                        method: 'POST',
+                        url: '/organizationDetails',
+                        data:{'organizationId':id}
+                    }).success(function(response){
+
+                        $('#details-name').text(response.records[0].Name==null?'':response.records[0].Name);
+                        $('#details-membership').text(response.records[0].Membership_Type__c==null?'':response.records[0].Membership_Type__c);
+                        $('#details-impactfocus').text(response.records[0].Impact_Focus__c==null?'':response.records[0].Impact_Focus__c);
+                        $('#details-sectorfocus').text(response.records[0].Sector_Focus__c==null?'':response.records[0].Sector_Focus__c);
+                        $('#details-city').text(response.records[0].Headquarters_City__c==null?'':response.records[0].Headquarters_City__c);
+                        $('#details-country').text(response.records[0].Headquarters_Country__c==null?'':response.records[0].Headquarters_Country__c);
+                        $('#details-website').text(response.records[0].Website==null?'':response.records[0].Website);
+                        $('#details-description').text(response.records[0].Description==null?'':response.records[0].Description);
+                        $('#details-websiteLink').attr("href",response.records[0].Website );
+                        $('#details-modal').modal('show');
+
+                    }).error(function(error){
+                        alert("Something Went on the Server");
+                    });
+
+                }
+
+            });
+        </script>
+    </div>
+</div>
+</body>
+
+</html>
