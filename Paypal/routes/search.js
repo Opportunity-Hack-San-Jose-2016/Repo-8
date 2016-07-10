@@ -5,7 +5,7 @@ var config = require('../config/config.json');
 
 
 exports.countriesList=function(req,res){
-	var query = "select country__c from ecosystem_mapping__c group by country__c"
+	var query = "select name from location__c"
 	console.log(query);
 	var conn = new jsforce.Connection();
 	var connection=conn.login(config.username, config.password, function(err, connRes) {
