@@ -114,7 +114,7 @@
                 </thead>
                 <tbody>
                 <tr ng-repeat="row in tableData">
-                    <td class="orgName text-style"><span data-id="{{row.Id}}"  data-ng-click="showDetails(row.Id)" class="view-icon"><i class="glyphicon glyphicon-eye-open"></i></span>{{row.Name}}</td>
+                    <td class="orgName text-style"><span data-id="{{row.Id}}"  data-ng-click="showDetails(row.Id)" class="view-icon"><i class="glyphicon glyphicon-eye-open"></i></span><a data-id="{{row.Id}}"  data-ng-click="showDetails(row.Id)" ng-bind="row.Name"></a></td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Idea == '1' }"></td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Startup == '1' }">{{row.Early}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Early == '1' }">{{row.Later}}</td>
