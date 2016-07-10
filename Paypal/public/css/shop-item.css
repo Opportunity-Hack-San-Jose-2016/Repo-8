@@ -1,0 +1,402 @@
+/*!
+ * Start Bootstrap - Shop Item HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.thumbnail img {
+    width: 100%;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
+.menu-buttons{
+
+}
+.panel-green {
+    border-color: #5cb85c;
+}
+
+.panel-green > .panel-heading {
+    border-color: #31B831;
+    color: #fff;
+    background-color: #31B831;
+}
+
+.panel-green > a {
+    color: #5cb85c;
+}
+
+.panel-green > a:hover {
+    color: #3d8b3d;
+}
+
+.panel-red {
+    border-color: #d9534f;
+}
+
+.panel-red > .panel-heading {
+  border-color: #E31E26;
+  color: #fff;
+  background-color: #E31E26;
+}
+
+.panel-red > a {
+    color: #d9534f;
+}
+
+.panel-red > a:hover {
+    color: #b52b27;
+}
+
+.panel-yellow {
+    border-color: #f0ad4e;
+}
+
+.panel-yellow > .panel-heading {
+    border-color: #F19007;
+    color: #fff;
+    background-color: #F19007;
+}
+
+.panel-yellow > a {
+    color: #f0ad4e;
+}
+
+.panel-yellow > a:hover {
+    color: #df8a13;
+}
+.huge {
+    font-size: 28px;
+}
+.menu-fixed{
+  top:50px;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  background-color:#000;
+}
+
+
+
+.ribbon-wrapper-green {
+    width: 145px;
+    height: 120px;
+    overflow: hidden;
+    position: absolute;
+    top: -3px;
+    right: 2px;
+	z-index:200;
+}
+
+.ribbon-green {
+    font: bold 15px Sans-Serif;
+    color: #333;
+    text-align: center;
+    text-shadow: rgba(255,255,255,0.5) 0px 1px 0px;
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    position: relative;
+    padding: 8px 0;
+    left: -3px;
+    top: 25px;
+    width: 180px;
+    background-color: #BFDC7A;
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#BFDC7A), to(#8EBF45));
+    background-image: -webkit-linear-gradient(top, #BFDC7A, #8EBF45);
+    background-image: -moz-linear-gradient(top, #BFDC7A, #8EBF45);
+    background-image: -ms-linear-gradient(top, #BFDC7A, #8EBF45);
+    background-image: -o-linear-gradient(top, #BFDC7A, #8EBF45);
+    color: #6a6340;
+    -webkit-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+    box-shadow: 0px 0px 3px rgba(0,0,0,0.3);
+}
+
+.ribbon-green:before, .ribbon-green:after {
+  content: "";
+  border-top:   3px solid #6e8900;   
+  border-left:  3px solid transparent;
+  border-right: 3px solid transparent;
+  position:absolute;
+  bottom: -3px;
+}
+
+.ribbon-green:before {
+  left: 0;
+}
+.ribbon-green:after {
+  right: 0;
+}
+.custom-padding{
+padding-left:0.5px;
+padding-right:0.5px;
+}
+.panel-heading{
+padding-top:40px;
+padding-bottom:40px;
+}
+.panel{
+margin-bottom:0px;
+}
+.panel :hover{
+background-color:#004599;
+}
+
+.modal {
+	font-family:Roboto,Arial,Garuda,sans-serif;
+}
+.vertical-alignment-helper {
+    display:table;
+    height: 100%;
+    width: 100%;
+}
+.vertical-align-center {
+    /* To center vertically */
+    display: table-cell;
+    vertical-align: middle;
+}
+.modal-content {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    width:inherit;
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+}
+.modal .modal-dialog{
+	width:45%;
+	
+}
+.modaltable-hover:hover
+{
+	background-color:rgba(246, 146, 29, 0.74902);
+	cursor:pointer;
+	cursor:hand;
+}
+
+.table-hover > tbody > tr:hover {
+  background-color:rgba(246, 146, 29, 0.74902);
+  opacity:.6;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd):hover {
+    background-color:rgba(246, 146, 29, 0.74902);
+    opacity:.6;
+}
+
+.panel-heading{
+	
+	border-radius:0px;
+}
+
+
+/**Kartheek css*/
+
+.menu-search{
+    color: #ababab!important;
+    background-color: #FFFFFF;
+    
+    
+}
+.menu-search>.container>.col-md-6{
+    background-color: #FFFFFF!important;
+    padding: 1% 0;
+    font-size:1.2em;
+}
+.search-icons{
+    color:#0B9BDB;
+}
+.search-icons>.form-group>input{
+    border:none;
+    outline: none;
+    padding-left:2%;
+    width:70%;
+    color: #ababab;
+    font-size:1.2em;
+}
+
+.add-icon>span{
+    color: #454545;
+    font-size:1.2em;
+    position: relative;
+    padding-left:0.5%;
+}
+.search-icons{
+	padding-top:10px;
+	
+}
+.search-icons>.form-group>i{
+    position:relative;
+    top:5px;
+}
+.add-icon>i{
+    position:relative;
+    top:5px;
+    cursor:pointer;
+}
+
+.form-input{
+    padding-left: 4%;
+    
+}
+.add-icon{
+    padding-left:4%;
+    }
+
+.center-content{
+	border-right:2px solid #E9E9E9;
+	border-left:2px solid #E9E9E9;
+	text-align:center;
+	margin-left:0px;
+	margin-right:0px;
+	
+	
+}
+.settings-icon{
+    float:right;
+    cursor:pointer;
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+.settings-icon :focus{
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+.ui-tooltip, .arrow:after {
+    background: black;
+    border: 2px solid white;
+}
+.ui-tooltip {
+    padding: 10px 20px;
+    color: white;
+    border-radius: 20px;
+    font: bold 14px "Helvetica Neue", Sans-Serif;
+    text-transform: uppercase;
+    box-shadow: 0 0 7px black;
+}
+.arrow {
+    width: 70px;
+    height: 16px;
+    overflow: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: -35px;
+    bottom: -16px;
+}
+.arrow.top {
+    top: -16px;
+    bottom: auto;
+}
+.arrow.left {
+    left: 20%;
+}
+.arrow:after {
+    content: "";
+    position: absolute;
+    left: 20px;
+    top: -20px;
+    width: 25px;
+    height: 25px;
+    box-shadow: 6px 5px 9px -9px black;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+.arrow.top:after {
+    bottom: -20px;
+    top: auto;
+}
+.popover.right > .arrow {
+    left: 23px!important;
+}
+.icon-popup{
+    float:left;
+}
+.clear{
+    clear:both;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+}
+
+.popover-menu{	
+	border-radius:4px;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin-top:10px;
+	display:block;
+	width:99%;	
+	min-height:60px;
+	
+	text-align:center;
+}
+.orange{
+background-color:#ff6600;
+}
+.green{
+	
+background-color:#00cc00;
+}
+
+.blue{	
+background-color:#1a75ff;
+}
+
+.popover-menu>a{	
+text-decoration:none;
+color:#fff;
+}
+
+.popover-menu>a:active{
+	
+	color:#fff;
+}
+
+.popover-content {    
+    width:100px;    
+    background-color:#000;
+    border: 1px solid #000;
+ }
+/**/
