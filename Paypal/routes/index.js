@@ -17,20 +17,19 @@ exports.index = function(req, res){
       conn.query(query, function(err, countries) {
         if (err) {
           console.error(err);
+          conn.logout();
           res.send(err);
         } else {
-          var connection=conn.login(config.username, config.password, function(err, connRes) {
-            if (err) { return console.error(err); }
-            else {
-              conn.query(query, function (err, mTypes) {
-                if (err) {
-                  console.error(err);
-                  res.send(err);
-                } else {
-                  console.log(res1);
-                  res.render('index', {'countries':countries, 'memberTypes':mTypes});
-                }
-              });
+          var mQuery = "select membership_type__c from account group by membership_type__c";
+          conn.query(mQuery, function (err, mTypes) {
+            if (err) {
+              console.error(err);
+              conn.logout();
+              res.send(err);
+            } else {
+              console.log(mTypes);
+              conn.logout();
+              res.render('index', {'countries':countries, 'memberTypes':mTypes});
             }
           });
         }
