@@ -4,12 +4,15 @@
  */
 
 var express = require('express')
+
     , routes = require('./routes')
     , index = require('./routes/index')
+    , user = require('./routes/user')
     , search = require('./routes/search')
     , http = require('http')
     , jsforce = require('jsforce')
     , path = require('path');
+
 
 var app = express();
 
@@ -32,6 +35,14 @@ if ('development' == app.get('env')) {
 app.get('/', index.index);
 
 app.get('/search', search.search);
+
+app.get('/countriesList', search.countriesList);
+
+app.get('/memberTypeList', search.memberTypeList);
+
+
+
+app.post('/search', search.stageData);
 
 app.get('/countriesList', search.countriesList);
 

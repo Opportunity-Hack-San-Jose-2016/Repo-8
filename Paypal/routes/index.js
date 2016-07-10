@@ -29,7 +29,7 @@ exports.index = function(req, res){
             } else {
               console.log(mTypes);
               conn.logout();
-              res.render('index', {'countries':countries, 'memberTypes':mTypes});
+              res.render('home', {'countries':countries, 'memberTypes':mTypes});
             }
           });
         }
