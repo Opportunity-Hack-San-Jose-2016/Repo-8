@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="home" ng-controller="homeCtrl">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Home</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/home-page.css" rel="stylesheet"/>
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-inverse" role="navigation">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">Data Freaks</a>
+        </div>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li>
+                    <a href="#">About</a>
+                </li>
+                <li>
+                    <a href="#">Services</a>
+                </li>
+                <li>
+                    <a href="#">Contact</a>
+                </li>
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+
+<!-- Page Content -->
+<div class="container-fluid">
+
+    <div class="search-container" ng-class="{ 'search-top': selectedIndex == 1 }">
+        <div class="search-wrapper">
+            <div class="row">
+                <div class="col-md-3 pull-left">
+                    <div class="form-group select-menu flex-select-menu flight-travelers-wrap">
+                        <label class="sr-only">Country</label>
+                        <select name="travelers"
+                                class="form-control input-lg"
+                                id="passengerNumber" ng-model="countryValue">
+                            <option ng-repeat="option in countryOptions" value="{{option.Name}}">{{option.Name}}</option>
+                        </select>
+                        <i class="select"><i class="icon-chevron-down"></i></i>
+                        <i class="icon-guy"></i>
+                    </div>
+                </div>
+                <div class="col-md-3 pull-left multiSelectDiv" ng-dropdown-multiselect="" options="serviceData" selected-model="serviceModel"
+                     extra-settings="serviceSettings"></div>
+                <div class="col-md-3 pull-left">
+                    <button type="submit" class="btn-block btn btn-primary btn-lg"
+                            id="flightSearchButton" ng-click="search()">
+                        <i class="icon-flights"></i>
+                        <span>Search</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div ng-if="showTable">
+        <div class="row">
+            <table class="table search-table">
+                <thead>
+                <tr>
+                    <th>Organization Name</th>
+                    <th>Idea</th>
+                    <th>StartUp</th>
+                    <th>Early</th>
+                    <th>Later</th>
+                    <th>Growth</th>
+                    <th>Mature</th>
+                    <th>Tags</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="row in rows">
+                    <td>{{row.orgName}}</td>
+                    <td>{{row.Later}}</td>
+                    <td>{{row.Early}}</td>
+                    <td>{{row.Later}}</td>
+                    <td>{{row.Early}}</td>
+                    <td>{{row.Later}}</td>
+                    <td>{{row.Early}}</td>
+                    <td>{{row.Early}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div>
+
+    </div>
+</div>
+<!-- /.container -->
+
+<!-- jQuery -->
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script src="js/lodash.js"></script>
+<script src="js/angularjs-dropdown-multiselect.js"></script>
+<script type="text/javascript">
+
+    var app = angular.module('home', ['angularjs-dropdown-multiselect']);
+    app.controller('homeCtrl', function($http, $scope, $timeout) {
+        var data = <%- JSON.stringify(countries) %>;
+        console.log(data);
+        var typeData = <%- JSON.stringify(countries) %>;
+        $scope.countryOptions = data.records;
+        $scope.typeOptions = typeData.records;
+        $scope.serviceModel = []; $scope.serviceData = [ {id: 1, label: "Financial Services"}, {id: 2, label: "Capacity Development"}];
+        $scope.serviceSettings = {displayProp: 'label'};
+        $scope.selectedIndex = 0;
+        $scope.showTable=false;
+        $scope.search = function() {
+            /* $http({
+             method: 'POST',
+             url: '/logout'
+             }).success(function(response){
+             //alert("logout success");
+             window.location='/';
+             }).error(function(error){
+             alert(error);
+             });*/
+
+            $scope.selectedIndex = 1;
+            $timeout(function(){
+                /*$http({
+                    method: 'POST',
+                    url: '/search',
+                    data:data
+                }).success(function(response){
+                    //alert("logout success");
+                    window.location='/';
+                }).error(function(error){
+                    alert(error);
+                });*/
+                $scope.showTable = true;
+            },1000);
+
+
+        }
+
+    });
+</script>
+
+</body>
+
+</html>

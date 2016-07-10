@@ -6,6 +6,7 @@
 var express = require('express')
   , routes = require('./routes')
   , user = require('./routes/user')
+  , search = require('./routes/search')
   , http = require('http')
   , jsforce = require('jsforce')
   , path = require('path');
@@ -29,6 +30,15 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', user.login);
+
+app.get('/search', search.search);
+
+app.get('/countriesList', search.countriesList);
+
+app.get('/memberTypeList', search.memberTypeList);
+
+app.get('/test', search.test);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

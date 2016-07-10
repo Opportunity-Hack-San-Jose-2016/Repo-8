@@ -5,7 +5,7 @@
  */
 
 body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+    /*padding-top: 70px;*/ /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
 
 .thumbnail img {
@@ -400,3 +400,17 @@ color:#fff;
     border: 1px solid #000;
  }
 /**/
+
+
+
+
+
+/*search - container CSS*/
+.search-container{
+    width:90%;
+    margin: 0px auto;
+}
+
+.search-wrapper{
+    background-color: #EFF0F1;
+}
