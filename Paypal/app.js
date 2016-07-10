@@ -48,7 +48,6 @@ app.get('/countriesList', search.countriesList);
 
 app.get('/memberTypeList', search.memberTypeList);
 
-app.get('/test', search.test);
 
 
 http.createServer(app).listen(app.get('port'), function(){

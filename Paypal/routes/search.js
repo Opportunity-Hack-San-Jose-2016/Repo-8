@@ -1,21 +1,14 @@
 var http = require('http');
 var URL = require('url');
 var jsforce = require('jsforce');
+var config = require('../config/config.json');
 
-var login='susannah.ware@aspeninst.org';
-var password='OctANDE2013';
-
-exports.test=function(req,res){
-	res.send("hellooo");
-}
 
 exports.countriesList=function(req,res){
-	var query = "select country__c from ecosystem_mapping__c group by country__c"
-	
+	var query = "select name from location__c"
 	console.log(query);
-	
 	var conn = new jsforce.Connection();
-	var connection=conn.login(login,password, function(err, connRes) {
+	var connection=conn.login(config.username, config.password, function(err, connRes) {
 		  if (err) { return console.error(err); }
 		  else{
 			  console.log("Connection Successful");
@@ -34,11 +27,9 @@ exports.countriesList=function(req,res){
 
 exports.memberTypeList=function(req,res){
 	var query = "select membership_type__c from account group by membership_type__c"
-	
 	console.log(query);
-	
 	var conn = new jsforce.Connection();
-	var connection=conn.login(login,password, function(err, connRes) {
+	var connection=conn.login(config.username, config.password, function(err, connRes) {
 		  if (err) { return console.error(err); }
 		  else{
 			  console.log("Connection Successful");
@@ -96,7 +87,7 @@ exports.search=function(req,res){
 	console.log(query);
 	
 	var conn = new jsforce.Connection();
-	var connection=conn.login(login,password, function(err, connRes) {
+	var connection=conn.login(config.username, config.password, function(err, connRes) {
 		  if (err) { return console.error(err); }
 		  else{
 			  console.log("Connection Successful");
@@ -108,39 +99,34 @@ exports.search=function(req,res){
 				    	console.log(res1);
 				    	res.send(res1);
 				    }
-				  });
+			  });
 		  }
-		  });
+	});
 };
 
 //TODO: need to add Geographical focus areas
 exports.organizationDetails=function(req,res) {
 	var organizationId = req.query.organizationId;
-	
 	if(organizationId === undefined || organizationId === "") {
 		res.send("error: send ID");
 	}
 	//select name,impact_focus__c,membership_type__c,website,description,sector_focus__c,headquarters_city__c,headquarters_country__c from account where id = ''
 	var query = "select name,impact_focus__c,membership_type__c,website,description,sector_focus__c,headquarters_city__c,headquarters_country__c from account where id = '"+organizationId+"'";
-		
 		console.log(query);
-		
 		var conn = new jsforce.Connection();
-		var connection=conn.login(login,password, function(err, connRes) {
-			  if (err) { return console.error(err); }
-			  else{
-				  console.log("Connection Successful");
-				  conn.query(query, function(err, res1) {
-					    if (err) {
-					    	console.error(err); 
-					    	res.send(err);
-					    } else {
-					    	console.log(res1);
-					    	res.send(res1);
-					    }
-					  });
-			  }
-			  });
+		var connection=conn.login(config.username, config.password, function(err, connRes) {
+			if (err) { return console.error(err); }
+			else{
+				console.log("Connection Successful");
+				conn.query(query, function(err, res1) {
+					if (err) {
+						console.error(err);
+						res.send(err);
+					} else {
+						console.log(res1);
+						res.send(res1);
+					}
+				});
+			}
+		});
 }
-
-

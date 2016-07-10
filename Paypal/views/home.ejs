@@ -14,7 +14,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet"/>
     <link href="css/home-page.css" rel="stylesheet"/>
-
+    <link href="css/shop-item.css" rel="stylesheet"/>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -139,33 +139,37 @@
         console.log(typeData);
         $scope.countryOptions = data.records;
         $scope.typeOptions = typeData.records;
-        $scope.serviceModel = []; $scope.serviceData = [ {id: 1, label: "Financial Services"}, {id: 2, label: "Capacity Development"}];
+        $scope.serviceModel = [];
+        $scope.serviceData = [ {id: 1, label: "Financial Services"}, {id: 2, label: "Capacity Development"}];
         $scope.serviceSettings = {displayProp: 'label'};
         $scope.selectedIndex = 0;
         $scope.showTable=false;
         $scope.search = function() {
-            /* $http({
-             method: 'POST',
-             url: '/logout'
-             }).success(function(response){
-             //alert("logout success");
-             window.location='/';
-             }).error(function(error){
-             alert(error);
-             });*/
-
+            console.log($scope.serviceModel);
+            var data = {
+                "country":$scope.countryValue,
+                "memberType":$scope.typeValue,
+                "financialServices":"NO",
+                "capacityNonFinServices":"NO"
+            };
+            if($scope.serviceModel[0].id){
+                data.financialServices="YES";
+            }
+            if($scope.serviceModel[1].id){
+                data.capacityNonFinServices="YES";
+            }
             $scope.selectedIndex = 1;
             $timeout(function(){
-                /*$http({
+                $http({
                     method: 'POST',
                     url: '/search',
                     data:data
                 }).success(function(response){
-                    //alert("logout success");
-                    window.location='/';
+                    alert("logout success");
+
                 }).error(function(error){
                     alert(error);
-                });*/
+                });
                 $scope.showTable = true;
             },1000);
 

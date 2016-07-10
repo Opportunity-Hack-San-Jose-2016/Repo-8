@@ -6,13 +6,13 @@ html, body{
 .search-container{
     width:90%;
     margin: 0px auto;
-    margin-top: 12%;
-    padding: 3% 1%;
-    background-color: #F8F0ED;
+    margin-top: 16%!important;
+    padding: 3% 1%!important;
+    background-color: #F8F0ED!important;
 }
 
 .search-top{
-    margin-top:2%!important;
+    margin-top:10%!important;
     transition-duration: 1s;
 }
 
