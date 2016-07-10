@@ -91,6 +91,13 @@
         </div>
     </div>
     <div ng-if="showTable">
+        <div class="tagRow row">
+            <span><i class="tag1 glyphicon glyphicon-tag"></i> - Sectors of Focus </span>
+            <span><i class="tag2 glyphicon glyphicon-tag"></i> - Business Model Focus</span>
+            <span><i class="tag3 glyphicon glyphicon-tag"></i> - Financial Services </span>
+            <span><i class="tag4 glyphicon glyphicon-tag"></i> - Capacity Development Service</span>
+            <span><i class="tag5 glyphicon glyphicon-tag"></i> - Delivery Mechanism</span>
+        </div>
         <div class="row">
             <table class="table search-table orgTable">
                 <thead>
@@ -115,13 +122,14 @@
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Growth == '1' }">{{row.Later}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Mature == '1' }">{{row.Early}}</td>
                     <td>
-                        <table>
+                        <table style="width:100%">
                             <tr>
-                                <td ng-show="row.Ecosystem_Mapping__r.records[0].Sector_or_Impact_Focus__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Sector_or_Impact_Focus__c}}"><i class="glyphicon glyphicon-tag"></i></a> </td>
-                                <td ng-show="row.Ecosystem_Mapping__r.records[0].Stakeholders_or_Business__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Stakeholders_or_Business__c}}"><i class="glyphicon glyphicon-tag"></i></a> </td>
-                                <td ng-show="row.Ecosystem_Mapping__r.records[0].Instrument__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Instrument__c}}"><i class="glyphicon glyphicon-tag"></i></a> </td>
-                                <td ng-show="row.Ecosystem_Mapping__r.records[0].CapDevs_What_does_your_int_consist_of__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].CapDevs_What_does_your_int_consist_of__c}}"><i class="glyphicon glyphicon-tag"></i></a> </td>
-                                <td ng-show="row.Ecosystem_Mapping__r.records[0].NonFinancial_Support__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].NonFinancial_Support__c}}"><i class="glyphicon glyphicon-tag"></i></a> </td>
+                                <td  ng-show="row.Ecosystem_Mapping__r.records[0].Sector_or_Impact_Focus__c">
+                                    <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Sector_or_Impact_Focus__c}}"><i  class="tag1 glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].Stakeholders_or_Business__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Stakeholders_or_Business__c}}"><i class="tag2 glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].Instrument__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Instrument__c}}"><i class="tag3 glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].CapDevs_What_does_your_int_consist_of__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].CapDevs_What_does_your_int_consist_of__c}}"><i class="tag4 glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].NonFinancial_Support__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].NonFinancial_Support__c}}"><i class="tag5 glyphicon glyphicon-tag"></i></a> </td>
                             </tr>
                         </table>
                     </td>

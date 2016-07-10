@@ -23,7 +23,7 @@ html, body{
     width: 88%;
     padding: 3% 1%;
     margin: 0px auto;
-    margin-top: 4%;
+    margin-top: 2%;
 }
 
 .multiSelectDiv>div{
@@ -87,11 +87,37 @@ html, body{
 }
 .modal-details> span{
     text-align:justify;
-}.modal-details-td{
-     width:25%;
-     font-weight:bold;
+}.modal-details-td {
+     width: 25%;
+     font-weight: bold;
+ }
 
+ .tag1, .tag2, .tag3, .tag4, .tag5{
+     font-size:1.3em;
+ }
+ .tag1{
+     color:red;
+ }
+
+ .tag2{
+     color:green;
+ }
+ .tag3{
+     color:blue;
+ }
+ .tag4{
+     color:orange;
+ }
+ .tag5{
+     color: brown;
+ }
 
 .errorMessage{
     color:red;
+}
+
+.tagRow{
+    width: 72%;
+    padding: 2% 0;
+    float: right;
 }
