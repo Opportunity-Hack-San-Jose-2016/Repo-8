@@ -50,40 +50,43 @@
     <div class="search-container" ng-class="{ 'search-top': selectedIndex == 1 }">
         <div class="search-wrapper">
             <div class="row">
-                <div class="col-md-3 pull-left">
-                    <div class="form-group select-menu flex-select-menu flight-travelers-wrap">
-                        <label class="sr-only">Country</label>
-                        <select name="countries"
-                                class="form-control input-lg"
-                                id="passengerNumber" ng-model="countryValue">
-                            <option ng-repeat="option in countryOptions" value="{{option.Name}}">{{option.Name}}</option>
-                        </select>
-                        <i class="select"><i class="icon-chevron-down"></i></i>
-                        <i class="icon-guy"></i>
+                <form name="filterForm">
+                    <div class="col-md-3 pull-left">
+                        <div class="form-group select-menu">
+                            <label class="sr-only">Country</label>
+                            <select name="countries"
+                                    class="form-control input-lg"
+                                    ng-model="countryValue"  required>
+                                <option ng-repeat="option in countryOptions" value="{{option.Name}}">{{option.Name}}</option>
+                            </select>
+                            <i class="select"><i class="icon-chevron-down"></i></i>
+                            <i class="icon-guy"></i>
+                            <span class="errorMessage" ng-show="countryError">Country should be selected</span>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 pull-left">
-                    <div class="form-group select-menu flex-select-menu flight-travelers-wrap">
-                        <label class="sr-only">Types</label>
-                        <select name="travelers"
-                                class="form-control input-lg"
-                                id="passengerNumber" ng-model="typeValue">
-                            <option ng-repeat="option in typeOptions" value="{{option.Membership_Type__c}}">{{option.Membership_Type__c}}</option>
-                        </select>
-                        <i class="select"><i class="icon-chevron-down"></i></i>
-                        <i class="icon-guy"></i>
+                    <div class="col-md-3 pull-left">
+                        <div class="form-group select-menu">
+                            <label class="sr-only">Types</label>
+                            <select name="travelers"
+                                    class="form-control input-lg"
+                                    ng-model="typeValue">
+                                <option ng-repeat="option in typeOptions" value="{{option.Membership_Type__c}}">{{option.Membership_Type__c}}</option>
+                            </select>
+                            <i class="select"><i class="icon-chevron-down"></i></i>
+                            <i class="icon-guy"></i>
+                        </div>
                     </div>
-                </div>
-                <div class="col-md-3 pull-left multiSelectDiv" ng-dropdown-multiselect="" options="serviceData" selected-model="serviceModel"
-                     extra-settings="serviceSettings"></div>
-                <div class="col-md-3 pull-left">
-                    <button type="submit" class="btn-block btn btn-primary btn-lg"
-                            id="flightSearchButton" ng-click="search()">
-                        <i class="icon-flights"></i>
-                        <span>Search</span>
-                    </button>
-                </div>
-
+                    <div class="col-md-3 pull-left multiSelectDiv" ng-dropdown-multiselect="" options="serviceData"
+                         selected-model="serviceModel"
+                         extra-settings="serviceSettings"></div>
+                    <div class="col-md-3 pull-left">
+                        <button type="submit" class="btn-block btn btn-primary btn-lg"
+                                ng-click="search()">
+                            <i class="icon-flights"></i>
+                            <span>Search</span>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -111,7 +114,18 @@
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Later == '1' }">{{row.Early}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Growth == '1' }">{{row.Later}}</td>
                     <td ng-class="{ 'color-cell': row.Ecosystem_Mapping__r.records[0].Stage__c.Mature == '1' }">{{row.Early}}</td>
-                    <td class="tags-style">{{row.Early}}</td>
+                    <td>
+                        <table>
+                            <tr>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].Sector_or_Impact_Focus__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Sector_or_Impact_Focus__c}}"><i class="glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].Stakeholders_or_Business__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Stakeholders_or_Business__c}}"><i class="glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].Instrument__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].Instrument__c}}"><i class="glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].CapDevs_What_does_your_int_consist_of__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].CapDevs_What_does_your_int_consist_of__c}}"><i class="glyphicon glyphicon-tag"></i></a> </td>
+                                <td ng-show="row.Ecosystem_Mapping__r.records[0].NonFinancial_Support__c"> <a href="#" data-toggle="tooltip" title="{{row.Ecosystem_Mapping__r.records[0].NonFinancial_Support__c}}"><i class="glyphicon glyphicon-tag"></i></a> </td>
+                            </tr>
+                        </table>
+                    </td>
+
                 </tr>
                 </tbody>
             </table>
@@ -148,71 +162,80 @@
             </div>
         </div>
 
-<!-- /.Modal ->
+        <!-- /.Modal ->
 
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
-<script src="js/bootstrap.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
-<script src="js/lodash.js"></script>
-<script src="js/angularjs-dropdown-multiselect.js"></script>
-<script type="text/javascript">
+        <!-- jQuery -->
+        <script src="js/jquery.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+        <script src="js/lodash.js"></script>
+        <script src="js/angularjs-dropdown-multiselect.js"></script>
+        <script type="text/javascript">
 
-    var app = angular.module('home', ['angularjs-dropdown-multiselect']);
-    app.controller('homeCtrl', function($http, $scope, $timeout) {
-        var data = <%- JSON.stringify(countries) %>;
-        console.log(data);
-        var typeData = <%- JSON.stringify(memberTypes) %>;
-        console.log(typeData);
-        $scope.countryOptions = data.records;
-        $scope.typeOptions = typeData.records;
-        $scope.serviceModel = [];
-        $scope.serviceData = [ {id: 1, label: "Financial Services"}, {id: 2, label: "Capacity Development"}];
-        $scope.serviceSettings = {displayProp: 'label'};
-        $scope.selectedIndex = 0;
-        $scope.showTable=false;
-        $scope.search = function() {
-            console.log($scope.serviceModel);
-            var data = {
-                "country":$scope.countryValue,
-                "memberType":$scope.typeValue,
-                "financialServices":"NO",
-                "capacityNonFinServices":"NO"
-            };
-            console.log($scope.serviceModel[0]);
-            for(var i=0; i<$scope.serviceModel.length; i++ ){
-                if($scope.serviceModel[i].id == 1){
-                    data.financialServices = "YES";
+            var app = angular.module('home', ['angularjs-dropdown-multiselect']);
+            app.controller('homeCtrl', function($http, $scope, $timeout) {
+                $scope.countryError = false;
+                var data = <%- JSON.stringify(countries) %>;
+                console.log(data);
+                var typeData = <%- JSON.stringify(memberTypes) %>;
+                console.log(typeData);
+                $scope.countryOptions = data.records;
+                $scope.typeOptions = typeData.records;
+                $scope.serviceModel = [];
+                $scope.serviceData = [ {id: 1, label: "Financial Services"}, {id: 2, label: "Capacity Development"}];
+                $scope.serviceSettings = {displayProp: 'label'};
+                $scope.selectedIndex = 0;
+                $scope.showTable=false;
+                $scope.search = function() {
+                    $scope.countryError = false;
+                    if($scope.countryValue){
+                        console.log($scope.serviceModel);
+                        var data = {
+                            "country":$scope.countryValue,
+                            "memberType":$scope.typeValue,
+                            "financialServices":"NO",
+                            "capacityNonFinServices":"NO"
+                        };
+                        console.log($scope.serviceModel[0]);
+                        for(var i=0; i<$scope.serviceModel.length; i++ ){
+                            if($scope.serviceModel[i].id == 1){
+                                data.financialServices = "YES";
+                            }
+                            else if($scope.serviceModel[i].id == 2){
+                                data.capacityNonFinServices = "YES";
+                            }
+                        }
+                        console.log(data);
+                        $scope.selectedIndex = 1;
+                        $timeout(function(){
+                            $http({
+                                method: 'POST',
+                                url: '/search',
+                                data:data
+                            }).success(function(response){
+                                console.log(response);
+                                $scope.tableData = response.records;
+
+                            }).error(function(error){
+                                alert(error);
+                            });
+                            $scope.showTable = true;
+                        },1000);
+                    }else{
+                        $scope.countryError = true;
+                    }
                 }
-                else if($scope.serviceModel[i].id == 2){
-                    data.capacityNonFinServices = "YES";
+                $scope.showDetails= function (id){
+                    alert(id);
                 }
-            }
-            console.log(data);
-            $scope.selectedIndex = 1;
-            $timeout(function(){
-                $http({
-                    method: 'POST',
-                    url: '/search',
-                    data:data
-                }).success(function(response){
-                    console.log(response);
-                    $scope.tableData = response.records;
-
-                }).error(function(error){
-                    alert(error);
-                });
-                $scope.showTable = true;
-            },1000);
 
 
-        }
-        $scope.showDetails= function (id){
-            alert(id);
-        }
+            });
+            $(document).ready(function() {
+                $('[data-toggle="tooltip"]').tooltip();
+            });
 
-    });
-</script>
+        </script>
 
 </body>
 

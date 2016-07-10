@@ -7,7 +7,6 @@ var express = require('express')
 
     , routes = require('./routes')
     , index = require('./routes/index')
-    , user = require('./routes/user')
     , search = require('./routes/search')
     , http = require('http')
     , jsforce = require('jsforce')
