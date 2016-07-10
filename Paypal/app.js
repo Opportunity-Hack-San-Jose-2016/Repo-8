@@ -7,7 +7,6 @@ var express = require('express')
 
     , routes = require('./routes')
     , index = require('./routes/index')
-    , user = require('./routes/user')
     , search = require('./routes/search')
     , http = require('http')
     , jsforce = require('jsforce')
@@ -34,19 +33,16 @@ if ('development' == app.get('env')) {
 
 app.get('/', index.index);
 
-app.get('/search', search.search);
+//app.get('/search', search.search);
 
 app.get('/countriesList', search.countriesList);
 
 app.get('/memberTypeList', search.memberTypeList);
 
-
-
+//TODO replace "search.stageData" to "search.search"
 app.post('/search', search.stageData);
 
-app.get('/countriesList', search.countriesList);
-
-app.get('/memberTypeList', search.memberTypeList);
+app.post('/organizationDetails', search.organizationDetails);
 
 
 
