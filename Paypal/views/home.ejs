@@ -56,7 +56,8 @@
                         <select name="countries"
                                 class="form-control input-lg"
                                 id="passengerNumber" ng-model="countryValue">
-                            <option ng-repeat="option in countryOptions" value="{{option.Name}}">{{option.Name}}</option>
+                            <option value="" disabled selected hidden>Select Country</option>
+                            <option ng-repeat="option in countryOptions" value="{{option.Name}}" ng-bind="option.Name"></option>
                         </select>
                         <i class="select"><i class="icon-chevron-down"></i></i>
                         <i class="icon-guy"></i>
@@ -68,7 +69,8 @@
                         <select name="travelers"
                                 class="form-control input-lg"
                                 id="passengerNumber" ng-model="typeValue">
-                            <option ng-repeat="option in typeOptions" value="{{option.Membership_Type__c}}">{{option.Membership_Type__c}}</option>
+                            <option value="" disabled selected hidden>Select Country</option>
+                            <option ng-repeat="option in typeOptions" value="{{option.Membership_Type__c}}" ng-bind="option.Membership_Type__c"></option>
                         </select>
                         <i class="select"><i class="icon-chevron-down"></i></i>
                         <i class="icon-guy"></i>
