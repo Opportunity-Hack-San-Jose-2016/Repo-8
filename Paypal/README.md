@@ -40,11 +40,13 @@ specifically EcoSystem of ANDY.
 The web application has been written to allow Entrepreneurs and Organisations to
 visualise via a simple online form and verify the gaps.
 
+#EcoSystem App
+
 ## EcoSystem App Technical Architecture
 
 ![ANDY Ecosystem Architecture](/Paypal/ANDY_Ecosystem.png?raw=true "ANDY Ecosystem Overview")
 
-### EcoSystem App allows:
+## EcoSystem App allows:
   * <b>Filtering based on Country , Membership Type, Financial Services and Capacity Planning Service</b>
   * <b>Dynamic and Interactive Chart Generation based on search criteria</b>
   * <b>List Focus, Instruments, Type of NonFinancial Support, Sectors of Focus, Stakeholders or Business Model Focus 
@@ -52,15 +54,13 @@ visualise via a simple online form and verify the gaps.
   * <b>organisation level information shown through a popup</b>
   * <b>Gaps at stage level per organisation per country based on filter criteria</b>
 
-## Developing
-
-### Technologies Used : 
- * <b> SalesForce Database</b>
- * <b>NodeJS</b>
- * <b>AngularJS</b>
- * <b>Bootstrap</b>
- * <b>JQuery</b>
- * <b>D3JS  </b> 
+## Technologies Used : 
+ * SalesForce Database
+ * NodeJS
+ * AngularJS
+ * Bootstrap
+ * JQuery
+ * D3JS   
 
 ### Tools
 
